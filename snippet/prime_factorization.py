@@ -11,7 +11,7 @@ Example:
 > print(res)
 [2, 2, 3]
 
-## 計算量
+計算量:
 O(sqrt(N))
 """
 
