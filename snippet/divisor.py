@@ -13,6 +13,7 @@ Example:
 > print(res)
 [1, 2, 3, 4, 6, 12]
 """
+
 def divisor(n:int):
     i = 1
     res = []
