@@ -2,6 +2,7 @@
 
 """
 最大公約数
+
 Params:
     a: int
     b: int
