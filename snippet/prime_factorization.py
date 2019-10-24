@@ -1,13 +1,12 @@
 """
-# 素因数分解
+素因数分解
 
-## I/O
-入力:
+Param:
     n: 整数
-出力:
+Return:
     r: nを素因数リスト
 
-## 例
+Example:
 > res = pf(12)
 > print(res)
 [2, 2, 3]

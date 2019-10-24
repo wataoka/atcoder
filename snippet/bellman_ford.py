@@ -1,6 +1,7 @@
 # reference: http://wakabame.hatenablog.com/entry/2017/09/06/221400 
 
 """
+ベルマンフォード法
 Params:
     edges: エッジに関する情報
     num_v: ノードの数
