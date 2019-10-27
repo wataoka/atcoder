@@ -1,10 +1,16 @@
 """
 ダイクストラ法
+
+Params:
+    s: 始点
+    n: 頂点数
+    w: 辺の数
+    cost[u][v] : 辺uvのコスト(存在しないときはinf)
+Return:
+    始点sから各頂点への最短距離のリスト
 """
 
-def dijkstra(s,n,w,cost):
-    #始点sから各頂点への最短距離
-    #n:頂点数,　w:辺の数, cost[u][v] : 辺uvのコスト(存在しないときはinf)
+def dijkstra(s:int,n:int,w:int,cost):
     d = [float("inf")] * n
     used = [False] * n
     d[s] = 0
