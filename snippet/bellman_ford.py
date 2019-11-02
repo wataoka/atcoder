@@ -6,19 +6,21 @@
 Params:
     edges: エッジに関する情報
     num_v: ノードの数
-    source: スタート地点のノード番号
+    s: スタート地点のノード番号
 Return:
-    d: distanceリスト全部
+    d: sから各地点への距離リスト
 """
 
-def bellman_ford(edges:list, num_v:int, source:int):
+def bellman_ford(edges:list, num_v:int, s:int):
     INF = float("inf")
     d = [INF for i in range(num_v)]
-    d[source] = 0
+    d[s] = 0
 
     for i in range(num_v):
-        for e in edges:
-            if e[0] != INF and d[e[1]] > d[e[0]] + e[2]:
-                d[e[1]] = d[e[0]] + e[2]
-                if i==num_v-1: return -1
+        for edge in edges:
+            f, t, c = edge
+            if f!=INF and d[t]>d[f]+c:
+                d[t] = d[f] + c 
+                if i==num_v-1: 
+                    return -1
     return d

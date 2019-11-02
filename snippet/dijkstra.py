@@ -3,30 +3,26 @@
 
 Params:
     s: 始点
-    n: 頂点数
-    w: 辺の数
-    cost[u][v] : 辺uvのコスト(存在しないときはinf)
+    num_v: 頂点の数
+    cost[u][v]: 辺uvのコスト (存在しない場合はINF)
 Return:
-    始点sから各頂点への最短距離のリスト
+    始点sから各頂点への最短距離リスト
 """
 
-def dijkstra(s:int,n:int,w:int,cost):
-    d = [float("inf")] * n
-    used = [False] * n
+def dijkstra(s:int, num_v:int, cost):
+    d = float("inf")*num_v
+    used = [False]*num_v
     d[s] = 0
-    
     while True:
         v = -1
-        #まだ使われてない頂点の中から最小の距離のものを探す
-        for i in range(n):
-            if (not used[i]) and (v == -1):
-               v = i
-            elif (not used[i]) and d[i] < d[v]:
-                v = i
+        for i in range(num_v):
+            if not(used[i]):
+                if (v==-1) or (d[i]<d[v]):
+                    v = i
         if v == -1:
-               break
+            break
         used[v] = True
-               
-        for j in range(n):
-               d[j] = min(d[j],d[v]+cost[v][j])
+
+        for i in range(num_v):
+            d[i] = min(d[i], d[v]+cost[v][i])
     return d
