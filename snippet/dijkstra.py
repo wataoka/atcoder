@@ -25,4 +25,5 @@ def dijkstra(s:int, num_v:int, cost):
 
         for i in range(num_v):
             d[i] = min(d[i], d[v]+cost[v][i])
+
     return d
