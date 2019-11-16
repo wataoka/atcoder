@@ -10,7 +10,26 @@ import itertools
 def comb_list(seq:list, n:int):
     return list(itertools.combinations(seq, n))
 
-# nCrを返す
-def comb_num(n:int, r:int):
-    seq = list(range(n))
-    return len(comb_list(seq,r))
+# aCbを返す
+def comb_num(a, b):
+    if a - b < b: b = a - b
+    if b == 0: return 1
+    if b == 1: return a
+
+    numerator = [a - b + k + 1 for k in range(b)]
+    denominator = [k + 1 for k in range(b)]
+
+    for p in range(2,b+1):
+        pivot = denominator[p - 1]
+        if pivot > 1:
+            offset = (a - b) % p
+            for k in range(p-1,b,p):
+                numerator[k - offset] /= pivot
+                denominator[k] /= pivot
+
+    result = 1
+    for k in range(b):
+        if numerator[k] > 1:
+            result *= int(numerator[k])
+
+    return result
