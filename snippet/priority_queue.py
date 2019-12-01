@@ -56,3 +56,6 @@ class PriorytyQueue(object):
             return list(map(lambda x:x*(-1), self.arr))
         else:
             return self.arr
+    
+    def is_empty(self):
+        return len(self.arr) == 0
