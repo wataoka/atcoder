@@ -34,7 +34,7 @@ def comb_num(a, b):
 
     return result
 
-# comb_num_modがnCr modを返す
+# nCr mod を返す (comb_num_mod関数が本体だが, comb_num_mod)
 def egcd(a, b):
     if a == 0:
         return b, 0, 1
