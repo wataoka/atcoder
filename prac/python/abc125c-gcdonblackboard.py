@@ -5,24 +5,23 @@ def gcd(a, b):
         a, b = b, a%b
     return a
 
-def cul(n, x):
-    l = len(x)
-    b = x
-    b.pop(n)
-    tmp = b[0]
-    for i in range(1, l-1):
-        tmp = gcd(tmp, b[i])
-    return tmp
+N = int(input()) 
+A = [0] + list(map(int, input().split()))
 
-import sys
-p = 50
-N = int(input())
-if p>N: p=N
-a = list(map(int, input().split()))
+# L[i]: gcd(A1,...,Ai)
+# R[i]: gcd(Ai,...,AN)
+L = [0]*(N+2)
+R = [0]*(N+2)
 
-ans = 0
-for i in range(p):
-    s = cul(i, a[:p])
-    if s>ans: ans=s
+L[1] = A[1]
+R[N] = A[N]
+for i in range(N-1):
+    L[i+2] = gcd(L[i+1], A[i+2])
+    R[N-i-1] = gcd(A[N-i-1], R[N-i])
 
-print(ans)
+res = 0
+for i in range(1, N+1):
+    rm_i = gcd(L[i-1], R[i+1])
+    if res < rm_i:
+        res = rm_i
+print(res)
