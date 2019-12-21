@@ -1,29 +1,38 @@
 """
-この例では, 根からの距離をdistanceに記録して行っている.
-ほぼ全てにおいてidをそのまま使用しているが, 
-distanceのみdistance[id-1]と使用する.
-(別にdictで改良してもいい)
+根つき木
+
+根つき木について解説している
+↓
+https://twitter.com/MrWatako/status/1208379759744307201
 """
 
 from collections import defaultdict
 
 N = int(input())
-edge = defaultdict(list)
-# 辺の情報と距離を記録
-for i in range(N-1):
-    u, v, w = map(int, input().split())
-    edge[u].append((v, w))
-    edge[v].append((u, w))
 
-# 幅優先探索
-distance = [0]*N
-queue = [(1, -1)]
+# 隣接するノードの管理(双方向)
+edge = defaultdict(list)
+for i in range(N-1):
+    a, b = map(int, input().split())
+    edge[a].append(b)
+    edge[b].append(a)
+
+# node: (id, parent_id)
+root_node = (1, -1)
+open_list = [root_node]
+closed_list = []
 while True:
-    if len(queue) == 0:
+    if len(open_list) == 0:
         break
-    cur_id, parent_id = queue.pop()
-    for child_id, w in edge[cur_id].copy():
+    cur_node = open_list.pop()
+    cur_id, parent_id = cur_node
+    #
+    # 何かしらの処理
+    # (例)
+    # if not(parent_id == -1):
+    #     cur_idとparent_idの重みとか価値の計算的な何か
+    #
+    for child_id in edge[cur_id]:
         if child_id == parent_id:
             continue
-        queue.append((child_id, cur_id))
-        distance[child_id-1] = distance[cur_id-1] + w
+        open_list.append((child_id, cur_id))
