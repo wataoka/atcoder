@@ -18,5 +18,4 @@ for i in range(1, N+1):
                 dp[i][j] = max(dp[i][j], floor(dp[k][j-1]/A[k])*A[i] + dp[k][j-1]%A[k])
         ans = max(ans, dp[i][j])
 
-for i in dp:
-    print(i)
+print(ans)
