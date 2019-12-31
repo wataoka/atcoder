@@ -14,8 +14,8 @@ for i in range(1, N+1):
     for j in range(0, min(M+1, i+1)):
         dp[i][j] = max(dp[i][j], dp[i-1][j])
         if j>0:
-            for k in range(i):
-                dp[i][j] = max(dp[i][j], floor(dp[k][j-1]/A[k])*A[i] + dp[k][j-1]%A[k])
+            for l in range(i):
+                dp[i][j] = max(dp[i][j], floor(dp[l][j-1]/A[l])*A[i] + dp[l][j-1]%A[l])
         ans = max(ans, dp[i][j])
 
 print(ans)
