@@ -1,15 +1,12 @@
+import collections
 N = int(input())
+li = [i for i in range(1, N+1)]
+l1 = list(map(lambda x:str(x)[0]+str(x)[-1], li))
+l2 = list(map(lambda x:str(x)[-1]+str(x)[0], li))
+c1 = collections.Counter(l1)
+c2 = collections.Counter(l2)
 
-d = len(str(N))
-a = int(str(N)[1:-1])
-f = int(str(N)[0])
-e = int(str(N)[-1])
-m = min(f, e)
-M = max(f, e)
-
-ans = 0
-if m!=0:
-    ans += a
-ans += ((M-1)**2)*(10**(d-2))
-ans += 10**(d-3)
-print(ans)
+num = 0
+for l in set(l1):
+    num += c1[l] * c2[l]
+print(num)
