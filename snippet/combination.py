@@ -55,3 +55,13 @@ def comb_num_mod(n, r, mod=10**9+7):
     for i in range(r):
         res = res * (n - i) * modinv(i+1, mod) % mod
     return res
+
+# 多分一番最強の nCr with mod
+def comb(n,r,mod=10**9+7):
+    a=1
+    b=1
+    r = min(r,n-r)
+    for i in range(r):
+        a = a*(n-i)%mod
+        b = b*(i+1)%mod
+    return a*pow(b,mod-2,mod)%mod
